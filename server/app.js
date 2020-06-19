@@ -3,21 +3,25 @@ import express from 'express';
 // import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import { apiResponse } from './middleware'
+import cors from 'cors';
 
+import { apiResponse } from './middleware'
 import appRouter from './routes';
 import { dbConnect } from './models';
 
 const app = express();
 
+// initiate a connection to mongoDb
 dbConnect()
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use((req, res, next) => apiResponse(req, res, next));
 
+// handle all routing logic and initialisation associated with app
 appRouter(app)
 
 // catch 404 and forward to error handler

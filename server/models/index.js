@@ -12,12 +12,10 @@ const dbConnect = () => {
 	});
 };
 
-const models = {
-	ChatRoom,
-	Message,
-	User
-};
-
 export { dbConnect };
 
-export default models;
+export default {
+  ChatRoom,
+  Message,
+  User
+};

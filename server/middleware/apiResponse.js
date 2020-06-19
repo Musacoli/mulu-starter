@@ -1,5 +1,11 @@
 
 const apiResponse = (req, res, next) => {
+
+  /**
+   * @param data {object} the object containing result data
+   * @param message {string} message associated with the response
+   * @param statusCode {number} response status code
+   */
   res.sendSuccess = (data, message, statusCode = 200) => {
     if (req.method === 'OPTIONS') {
       return res.status(200).end();
@@ -12,6 +18,11 @@ const apiResponse = (req, res, next) => {
     });
   };
 
+  /**
+   * @param message {string} message associated with the response
+   * @param error {object} the response error details object
+   * @param statusCode {number} response status code
+   */
   res.sendError = (message, error,  statusCode = 500) => {
     if (req.method === 'OPTIONS') {
       return res.status(statusCode).end();
