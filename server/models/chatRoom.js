@@ -9,7 +9,9 @@ const chatRoomSchema = new mongoose.Schema(
 		},
 		videoUrl: {
 			type: String
-		}
+		},
+    host: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 	}
 );
 

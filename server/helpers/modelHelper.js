@@ -1,6 +1,7 @@
 
 const handleExecution = (err, result, res) => {
   if (err) {
+    console.log(err)
     return res.sendError('An error has occurred!', err)
   } else if (!result) {
     return res.sendSuccess(result, 'No item found!')

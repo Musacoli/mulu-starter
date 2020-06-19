@@ -12,9 +12,8 @@ const dbConnect = () => {
 	});
 };
 
-export { dbConnect };
-
-export default {
+export {
+  dbConnect,
   ChatRoom,
   Message,
   User
