@@ -23,8 +23,7 @@ const getUserById = async (req, res) => {
     return await modelHelper.findById(
       User,
       res,
-      id,
-      ['host', 'participants']
+      id
     )
 
   } catch (e) {
@@ -57,8 +56,7 @@ const getUsers = async (req, res) => {
   try {
     return await modelHelper.findAll(
       User,
-      res,
-      ['host', 'participants']
+      res
     );
 
   } catch (e) {
