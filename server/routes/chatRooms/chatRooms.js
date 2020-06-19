@@ -1,5 +1,5 @@
 import modelHelper from '../../helpers/modelHelper';
-import { ChatRoom } from '../../models'
+import { ChatRoom, Message } from '../../models'
 
 const createChatRoom = async (req, res) => {
 
@@ -13,6 +13,29 @@ const createChatRoom = async (req, res) => {
     });
 
     return res.sendSuccess(chatRoom, 'success', 201)
+  } catch (e) {
+    return res.sendError('An error has occurred', e)
+  }
+}
+
+const createChatRoomMessage = async (req, res) => {
+  const { chatRoomId, userId } = req.query
+  const { message } = req.body
+
+  try {
+    const newMessage = await Message.create({
+      message,
+      user: userId,
+      chatRoom: chatRoomId
+    });
+
+    return await modelHelper.update(
+      ChatRoom,
+      res,
+      chatRoomId,
+      { messages: newMessage._id },
+      ['messages']
+      )
   } catch (e) {
     return res.sendError('An error has occurred', e)
   }
@@ -41,7 +64,7 @@ const getChatRooms = async (req, res) => {
     return await modelHelper.findAll(
       ChatRoom,
       res,
-      ['host', 'participants']
+      ['host']
     );
 
   } catch (e) {
@@ -51,6 +74,7 @@ const getChatRooms = async (req, res) => {
 
 export {
   createChatRoom,
+  createChatRoomMessage,
   getChatRoom,
   getChatRooms
 }

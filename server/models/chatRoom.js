@@ -12,6 +12,7 @@ const chatRoomSchema = new mongoose.Schema(
 		},
     host: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }]
 	},
   { timestamps: true },
 );

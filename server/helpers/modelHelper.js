@@ -1,4 +1,9 @@
 
+/**
+ * @param err {object} error object
+ * @param result {object} result from database query
+ * @param res {Object} the response object
+ */
 const handleExecution = (err, result, res) => {
   if (err) {
     return res.sendError('An error has occurred!', err)
@@ -49,6 +54,24 @@ export default {
   findById: async (model, res, id, populationFields = []) => {
     return model
       .findById(id)
+      .populate(populationFields)
+      .exec((err, result) => handleExecution(err, result, res))
+  },
+
+  /**
+   * @param model {object} model to be queried
+   * @param res {object} the response object
+   * @param id {string} the unique identifier of the item
+   * @param populationFields {array} desired external references for data population
+   * @param {{fieldName: *}} updatedData
+   */
+  update: async (model, res, id, updatedData, populationFields = []) => {
+    return model
+      .findByIdAndUpdate(
+        id,
+        { $push: updatedData },
+        { new: true, useFindAndModify: false }
+      )
       .populate(populationFields)
       .exec((err, result) => handleExecution(err, result, res))
   }
