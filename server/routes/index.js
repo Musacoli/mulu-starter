@@ -5,7 +5,7 @@ import messagesRouter from './messages'
  * @param app {object} the express app instance
  */
 const appRouter = (app) => {
-  app.use('/chat-room', chatRoomsRouter)
+  app.use('/chatroom', chatRoomsRouter)
   app.use('/user', usersRouter)
   app.use('/message', messagesRouter)
   app.use('/', (req, res) => {

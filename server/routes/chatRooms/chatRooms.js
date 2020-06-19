@@ -1,5 +1,5 @@
 import modelHelper from '../../helpers/modelHelper';
-import { ChatRoom, Message } from '../../models'
+import { ChatRoom, Message, User } from '../../models'
 
 const createChatRoom = async (req, res) => {
 
@@ -41,6 +41,28 @@ const createChatRoomMessage = async (req, res) => {
   }
 }
 
+const createChatRoomParticipant = async (req, res) => {
+  const { chatRoomId } = req.query
+
+  const { username } = req.body
+
+  try {
+    const newUser = await User.create({
+      username
+    });
+
+    return await modelHelper.update(
+      ChatRoom,
+      res,
+      chatRoomId,
+      { participants: newUser._id },
+      ['participants']
+    )
+  } catch (e) {
+    return res.sendError('An error has occurred', e)
+  }
+}
+
 const getChatRoom = async (req, res) => {
   const { id } = req.params;
 
@@ -75,6 +97,7 @@ const getChatRooms = async (req, res) => {
 export {
   createChatRoom,
   createChatRoomMessage,
+  createChatRoomParticipant,
   getChatRoom,
   getChatRooms
 }
