@@ -1,6 +1,8 @@
 import express from 'express'
 const router = express.Router();
 
-/* GET home page. */
+const appRouter = (app) => {
 
-module.exports = router;
+}
+
+export default appRouter;

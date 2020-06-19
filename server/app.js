@@ -3,8 +3,9 @@ import express from 'express';
 // import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import { apiResponse } from './middleware'
 
-import indexRouter from './routes/index';
+import appRouter from './routes';
 import { dbConnect } from './models';
 
 const app = express();
@@ -15,8 +16,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use((req, res, next) => apiResponse(req, res, next));
 
-app.use('/', indexRouter);
+appRouter(app)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
