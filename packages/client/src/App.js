@@ -1,17 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+import routes from './routes';
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Mulu React Client
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        {routes.map((route) => <Route {...route} />)}
+      </Switch>
+    </Router>
   );
 }
 
