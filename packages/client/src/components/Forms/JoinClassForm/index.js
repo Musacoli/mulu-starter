@@ -21,7 +21,7 @@ export const JoinClassForm = (props) => {
       {({ errors, getFieldProps, handleSubmit, isSubmitting, touched }) => (
         <div className="form-wrapper">
           <div className="section-title text-center mb--50">
-            <h2 className="title">{ `Join ${host}'s class` }</h2>
+            <h2 className="title">{`Join ${host}'s class`}</h2>
           </div>
           {loading ? (
             <Loader />
@@ -60,4 +60,5 @@ export const JoinClassForm = (props) => {
 JoinClassForm.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   loading: PropTypes.bool,
+  host: PropTypes.string,
 }

@@ -15,3 +15,7 @@ export const joinClassSchema = Yup.object({
     .min(3, 'Must be 3 characters or more')
     .required('Required'),
 })
+
+export const chatRoomSchema = Yup.object({
+  message: Yup.string(),
+})

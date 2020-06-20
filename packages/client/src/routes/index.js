@@ -1,6 +1,7 @@
 import HomeView from 'views/HomeView'
 import CreateClassView from 'views/CreateClassView'
 import JoinClassView from 'views/JoinClassView'
+import ChatRoomView from 'views/ChatRoomView'
 
 const routes = [
   {
@@ -23,6 +24,13 @@ const routes = [
     component: JoinClassView,
     exact: true,
     key: 'joinClass',
+  },
+  {
+    path: '/chatroom',
+    name: 'Chat Room',
+    component: ChatRoomView,
+    exact: true,
+    key: 'chatRoom',
   },
 ]
 

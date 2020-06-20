@@ -9,7 +9,7 @@ export const Header = () => {
   const isHome = pathname === '/'
 
   return (
-    <Navbar bg="dark" expand="lg" variant="dark">
+    <Navbar sticky="top" bg="dark" expand="lg" variant="dark">
       <Navbar.Brand href="/">Mulu Fit</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
