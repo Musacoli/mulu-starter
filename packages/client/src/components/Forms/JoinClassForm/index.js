@@ -5,25 +5,23 @@ import Button from 'react-bootstrap/Button'
 
 import { Loader } from 'components/Loader'
 import { BaseForm, ErrorText } from 'components/Forms/styled'
-import { newClassSchema } from '../validationSchema'
+import { joinClassSchema } from '../validationSchema'
 
-export const CreateClassForm = (props) => {
-  const { handleFormSubmit, loading } = props
+export const JoinClassForm = (props) => {
+  const { handleFormSubmit, loading, host = 'User' } = props
 
   return (
     <Formik
       initialValues={{
         name: '',
-        className: '',
-        youTubeUrl: '',
       }}
-      validationSchema={newClassSchema}
+      validationSchema={joinClassSchema}
       onSubmit={handleFormSubmit}
     >
       {({ errors, getFieldProps, handleSubmit, isSubmitting, touched }) => (
         <div className="form-wrapper">
           <div className="section-title text-center mb--50">
-            <h2 className="title">Start a class</h2>
+            <h2 className="title">{ `Join ${host}'s class` }</h2>
           </div>
           {loading ? (
             <Loader />
@@ -40,34 +38,6 @@ export const CreateClassForm = (props) => {
                   </ErrorText>
                 </div>
 
-                <label className="col-form-label mt-2" htmlFor="className">
-                  Class name
-                </label>
-                <div>
-                  <Field
-                    required
-                    id="className"
-                    {...getFieldProps('className')}
-                  />
-                  <ErrorText className="error">
-                    {touched.className && errors.className}
-                  </ErrorText>
-                </div>
-
-                <label className="col-form-label mt-2" htmlFor="youTubeUrl">
-                  YouTube URL
-                </label>
-                <div>
-                  <Field
-                    required
-                    id="youTubeUrl"
-                    {...getFieldProps('youTubeUrl')}
-                  />
-                  <ErrorText className="error">
-                    {touched.youTubeUrl && errors.youTubeUrl}
-                  </ErrorText>
-                </div>
-
                 <Button
                   type="submit"
                   value="submit"
@@ -76,7 +46,7 @@ export const CreateClassForm = (props) => {
                   variant="primary"
                   disabled={isSubmitting}
                 >
-                  Start
+                  Join
                 </Button>
               </BaseForm>
             </div>
@@ -87,7 +57,7 @@ export const CreateClassForm = (props) => {
   )
 }
 
-CreateClassForm.propTypes = {
+JoinClassForm.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   loading: PropTypes.bool,
 }

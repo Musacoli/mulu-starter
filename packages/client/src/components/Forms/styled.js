@@ -1,7 +1,7 @@
 import { Form } from 'formik'
 import styled from 'styled-components'
 
-export const CreateForm = styled(Form)`
+export const BaseForm = styled(Form)`
   display: flex;
   flex-flow: column;
   flex-basis: auto;

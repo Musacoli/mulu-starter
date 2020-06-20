@@ -1,5 +1,6 @@
-import HomeView from '../views/HomeView'
-import CreateClassView from '../views/CreateClassView'
+import HomeView from 'views/HomeView'
+import CreateClassView from 'views/CreateClassView'
+import JoinClassView from 'views/JoinClassView'
 
 const routes = [
   {
@@ -15,6 +16,13 @@ const routes = [
     component: CreateClassView,
     exact: true,
     key: 'createClass',
+  },
+  {
+    path: '/join-class',
+    name: 'Join A Class',
+    component: JoinClassView,
+    exact: true,
+    key: 'joinClass',
   },
 ]
 

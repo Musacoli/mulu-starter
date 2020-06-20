@@ -9,3 +9,9 @@ export const newClassSchema = Yup.object({
     .required('Required'),
   youTubeUrl: Yup.string().url('Please enter a valid url').required('Required'),
 })
+
+export const joinClassSchema = Yup.object({
+  name: Yup.string()
+    .min(3, 'Must be 3 characters or more')
+    .required('Required'),
+})
