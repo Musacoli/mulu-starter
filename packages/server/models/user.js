@@ -1,20 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema(
-	{
-		username: {
-			type: String,
-			unique: true,
-			required: true,
-		},
-	},
-	{ timestamps: true },
-);
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+  },
+  { timestamps: true },
+)
 
-userSchema.pre('remove', function(next) {
-	this.model('Message').deleteMany({ user: this._id }, next);
-});
+userSchema.pre('remove', (next) => {
+  this.model('Message').deleteMany({ user: this._id }, next)
+})
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema)
 
-export default User;
+export default User

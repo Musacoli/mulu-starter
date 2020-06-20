@@ -1,6 +1,12 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-import { getChatRooms, getChatRoom, createChatRoom, createChatRoomMessage, createChatRoomParticipant } from './chatRooms';
+import {
+  getChatRooms,
+  getChatRoom,
+  createChatRoom,
+  createChatRoomMessage,
+  createChatRoomParticipant,
+} from './chatRooms'
 
 const router = Router()
 
@@ -10,5 +16,4 @@ router.post('/participant', createChatRoomParticipant)
 router.get('/all', getChatRooms)
 router.get('/:id', getChatRoom)
 
-export default router;
-
+export default router

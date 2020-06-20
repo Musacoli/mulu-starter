@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-import logo from '../logo.svg';
-import '../App.css';
+import logo from 'assets/images/logo.svg';
+import 'assets/stylesheets/App.css';
 
 export const Home = () => {
   return (
@@ -14,8 +14,8 @@ export const Home = () => {
         </p>
       </header>
       <div className="row mt-5 w-100 justify-content-center">
-        <Button className="mr-2" variant="primary" size="lg">Start a class</Button>
-        <Button className="ml-2" variant="dark" size="lg">Join a class</Button>
+        <Button href='/create-class' className="mr-2" variant="primary" size="lg">Start a class</Button>
+        <Button href='/join-class' className="ml-2" variant="dark" size="lg">Join a class</Button>
       </div>
     </div>
   )

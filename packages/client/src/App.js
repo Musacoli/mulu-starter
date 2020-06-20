@@ -1,17 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import routes from './routes';
+import routes from './routes'
 
+const App = () => (
+  <Router>
+    <Switch>
+      {routes.map((route) => (
+        <Route {...route} />
+      ))}
+    </Switch>
+  </Router>
+)
 
-const App = () => {
-  return (
-    <Router>
-      <Switch>
-        {routes.map((route) => <Route {...route} />)}
-      </Switch>
-    </Router>
-  );
-}
-
-export default App;
+export default App

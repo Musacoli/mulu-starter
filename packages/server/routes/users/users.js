@@ -1,14 +1,13 @@
-import modelHelper from '../../helpers/modelHelper';
+import modelHelper from '../../helpers/modelHelper'
 import { User } from '../../models'
 
 const createUser = async (req, res) => {
-
   const { username } = req.body
 
   try {
     const user = await User.create({
-      username
-    });
+      username,
+    })
 
     return res.sendSuccess(user, 'success', 201)
   } catch (e) {
@@ -17,56 +16,31 @@ const createUser = async (req, res) => {
 }
 
 const getUserById = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params
 
   try {
-    return await modelHelper.findById(
-      User,
-      res,
-      id
-    )
-
+    return await modelHelper.findById(User, res, id)
   } catch (e) {
     return res.sendError('An error has occurred', e)
   }
-
 }
 
 const getUserByUsername = async (req, res) => {
-  const { username } = req.query;
-
-  console.log(username)
+  const { username } = req.query
 
   try {
-    return await modelHelper.find(
-      User,
-      res,
-      'username',
-      username
-    )
-
+    return await modelHelper.find(User, res, 'username', username)
   } catch (e) {
     return res.sendError('An error has occurred', e)
   }
-
 }
 
 const getUsers = async (req, res) => {
-
   try {
-    return await modelHelper.findAll(
-      User,
-      res
-    );
-
+    return await modelHelper.findAll(User, res)
   } catch (e) {
-    return res.sendError('An error has occurred', e);
+    return res.sendError('An error has occurred', e)
   }
 }
 
-export {
-  createUser,
-  getUserById,
-  getUserByUsername,
-  getUsers
-}
+export { createUser, getUserById, getUserByUsername, getUsers }

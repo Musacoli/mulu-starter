@@ -1,5 +1,3 @@
-import apiResponse from './apiResponse';
+import apiResponse from './apiResponse'
 
-export {
-  apiResponse
-}
+export { apiResponse }

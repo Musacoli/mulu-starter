@@ -1,20 +1,15 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-import User from './user';
-import Message from './message';
-import ChatRoom from './chatRoom';
+import User from './user'
+import Message from './message'
+import ChatRoom from './chatRoom'
 
 const dbConnect = () => {
-	mongoose.set('useCreateIndex', true)
-	return mongoose.connect(process.env.MULU_DATABASE_URL, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	});
-};
+  mongoose.set('useCreateIndex', true)
+  return mongoose.connect(process.env.MULU_DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+}
 
-export {
-  dbConnect,
-  ChatRoom,
-  Message,
-  User
-};
+export { dbConnect, ChatRoom, Message, User }

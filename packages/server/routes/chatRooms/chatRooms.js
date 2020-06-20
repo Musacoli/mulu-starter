@@ -1,16 +1,15 @@
-import modelHelper from '../../helpers/modelHelper';
+import modelHelper from '../../helpers/modelHelper'
 import { ChatRoom, Message, User } from '../../models'
 
 const createChatRoom = async (req, res) => {
-
   const { name, videoUrl, host } = req.body
 
   try {
     const chatRoom = await ChatRoom.create({
       name,
       videoUrl,
-      host
-    });
+      host,
+    })
 
     return res.sendSuccess(chatRoom, 'success', 201)
   } catch (e) {
@@ -26,16 +25,16 @@ const createChatRoomMessage = async (req, res) => {
     const newMessage = await Message.create({
       message,
       user: userId,
-      chatRoom: chatRoomId
-    });
+      chatRoom: chatRoomId,
+    })
 
     return await modelHelper.update(
       ChatRoom,
       res,
       chatRoomId,
       { messages: newMessage._id },
-      ['messages']
-      )
+      ['messages'],
+    )
   } catch (e) {
     return res.sendError('An error has occurred', e)
   }
@@ -48,15 +47,15 @@ const createChatRoomParticipant = async (req, res) => {
 
   try {
     const newUser = await User.create({
-      username
-    });
+      username,
+    })
 
     return await modelHelper.update(
       ChatRoom,
       res,
       chatRoomId,
       { participants: newUser._id },
-      ['participants']
+      ['participants'],
     )
   } catch (e) {
     return res.sendError('An error has occurred', e)
@@ -64,33 +63,23 @@ const createChatRoomParticipant = async (req, res) => {
 }
 
 const getChatRoom = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params
 
   try {
-   return await modelHelper.findById(
-     ChatRoom,
-     res,
-     id,
-     ['host', 'participants']
-   )
-
+    return await modelHelper.findById(ChatRoom, res, id, [
+      'host',
+      'participants',
+    ])
   } catch (e) {
     return res.sendError('An error has occurred', e)
   }
-
 }
 
 const getChatRooms = async (req, res) => {
-
   try {
-    return await modelHelper.findAll(
-      ChatRoom,
-      res,
-      ['host']
-    );
-
+    return await modelHelper.findAll(ChatRoom, res, ['host'])
   } catch (e) {
-    return res.sendError('An error has occurred', e);
+    return res.sendError('An error has occurred', e)
   }
 }
 
@@ -99,5 +88,5 @@ export {
   createChatRoomMessage,
   createChatRoomParticipant,
   getChatRoom,
-  getChatRooms
+  getChatRooms,
 }

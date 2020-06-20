@@ -2,14 +2,51 @@
   "name": "mulu",
   "version": "0.1.0",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "start:client": "yarn workspace client start",
     "start:server": "yarn workspace server start",
-    "start:all": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+    "start:all": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\"",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
   },
+  "eslintConfig": {
+    "extends": "@imaginary-cloud/react",
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "rules": {
+      "import/no-unresolved": 0,
+      "no-underscore-dangle": 0
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": [
+            "src"
+          ]
+        }
+      }
+    }
+  },
+  "prettier": "@imaginary-cloud/prettier-config",
   "dependencies": {
     "@babel/node": "^7.10.1",
     "concurrently": "^5.2.0"
+  },
+  "devDependencies": {
+    "@imaginary-cloud/eslint-config-react": "^1.0.1",
+    "@imaginary-cloud/prettier-config": "^1.0.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.1"
   }
 }
