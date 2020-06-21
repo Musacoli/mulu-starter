@@ -56,8 +56,11 @@ export const ChatRoom = () => {
       alert('Error occured, please try again')
     })
     socket.on('newMessage', (data) => {
-      setMessages((oldMessages) => [...oldMessages, data])
-      updateScrollPosition()
+      debugger
+      if (data.chatRoom === id) {
+        setMessages((oldMessages) => [...oldMessages, data])
+        updateScrollPosition()
+      }
     })
     setInitialized(true)
   }
