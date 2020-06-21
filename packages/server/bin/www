@@ -20,26 +20,54 @@ app.set("port", port);
 const server = http.createServer(app);
 const io = require("socket.io")(server);
 io.on("connection", socket => {
-  socket.on("join", async room => {
-    socket.join(room);
-    io.emit("roomJoined", room);
+  console.log('New user connection')
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
   });
+
+  socket.on("join", async data => {
+    const { chatRoomId, userId } = data
+
+    await models.ChatRoom.findByIdAndUpdate(
+      chatRoomId,
+      { $push: { participants: userId } },
+      { new: true, useFindAndModify: false },
+    )
+      .exec((err, result) => {
+        if (err) io.emit("newError", err)
+        if (result) {
+          socket.join(chatRoomId);
+          io.emit("roomJoined", userId);
+        }
+      });
+  });
+
   socket.on("message", async data => {
-    const { chatRoomName, userName, message } = data;
-    const chatRoom = await models.ChatRoom.find({
-      chatRoom: chatRoomName
-    });
-    const user = await models.User.find({
-      username: userName
-    })
-    const chatRoomId = chatRoom[0]._id;
-    const userId = user[0]._id;
+    const { chatRoomId, userId, message } = data;
+
     const chatMessage = await models.Message.create({
       chatRoom: chatRoomId,
       user: userId,
       message,
-    });
-    io.emit("newMessage", chatMessage);
+    })
+
+    await models.Message.findById(chatMessage._id)
+      .populate(['user'])
+      .exec(async (err, res) => {
+        if (err) io.emit("newError", err)
+        if (res) {
+          await models.ChatRoom.findByIdAndUpdate(
+            chatRoomId,
+            { $push: { messages: chatMessage._id } },
+            { new: true, useFindAndModify: false },
+          )
+            .exec((err, result) => {
+              if (err) io.emit("newError", err)
+              if (result) io.emit("newMessage", res);
+            });
+        }
+    })
   });
 });
 /**

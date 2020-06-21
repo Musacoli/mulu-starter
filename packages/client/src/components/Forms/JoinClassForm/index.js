@@ -8,7 +8,12 @@ import { BaseForm, ErrorText } from 'components/Forms/styled'
 import { joinClassSchema } from '../validationSchema'
 
 export const JoinClassForm = (props) => {
-  const { handleFormSubmit, loading, host = 'User' } = props
+  const {
+    handleFormSubmit,
+    loading,
+    host = 'User',
+    className = 'fitness',
+  } = props
 
   return (
     <Formik
@@ -21,7 +26,7 @@ export const JoinClassForm = (props) => {
       {({ errors, getFieldProps, handleSubmit, isSubmitting, touched }) => (
         <div className="form-wrapper">
           <div className="section-title text-center mb--50">
-            <h2 className="title">{`Join ${host}'s class`}</h2>
+            <h2 className="title">{`Join ${host}'s ${className} class`}</h2>
           </div>
           {loading ? (
             <Loader />
@@ -61,4 +66,5 @@ JoinClassForm.propTypes = {
   handleFormSubmit: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   host: PropTypes.string,
+  className: PropTypes.string,
 }

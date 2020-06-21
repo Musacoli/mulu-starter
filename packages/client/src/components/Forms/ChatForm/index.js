@@ -40,6 +40,7 @@ export const ChatForm = (props) => {
                     size="lg"
                     variant="primary"
                     disabled={isSubmitting}
+                    type="submit"
                   >
                     Send
                   </SendButton>

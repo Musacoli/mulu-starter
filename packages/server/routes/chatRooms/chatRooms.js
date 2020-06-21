@@ -5,10 +5,15 @@ const createChatRoom = async (req, res) => {
   const { name, videoUrl, host } = req.body
 
   try {
+    const newUser = await User.create({
+      username: host,
+    })
+
     const chatRoom = await ChatRoom.create({
       name,
       videoUrl,
-      host,
+      host: newUser._id,
+      participants: [newUser._id],
     })
 
     return res.sendSuccess(chatRoom, 'success', 201)
@@ -63,10 +68,10 @@ const createChatRoomParticipant = async (req, res) => {
 }
 
 const getChatRoom = async (req, res) => {
-  const { id } = req.params
+  const { chatRoomId } = req.query
 
   try {
-    return await modelHelper.findById(ChatRoom, res, id, [
+    return await modelHelper.findById(ChatRoom, res, chatRoomId, [
       'host',
       'participants',
     ])

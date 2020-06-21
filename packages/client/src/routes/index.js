@@ -19,14 +19,14 @@ const routes = [
     key: 'createClass',
   },
   {
-    path: '/join-class',
+    path: '/join-class/:id',
     name: 'Join A Class',
     component: JoinClassView,
     exact: true,
     key: 'joinClass',
   },
   {
-    path: '/chatroom',
+    path: '/chatroom/:id',
     name: 'Chat Room',
     component: ChatRoomView,
     exact: true,

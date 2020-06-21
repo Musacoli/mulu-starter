@@ -11,9 +11,9 @@ import {
 const router = Router()
 
 router.post('/', createChatRoom)
+router.get('/', getChatRoom)
 router.post('/message', createChatRoomMessage)
 router.post('/participant', createChatRoomParticipant)
 router.get('/all', getChatRooms)
-router.get('/:id', getChatRoom)
 
 export default router

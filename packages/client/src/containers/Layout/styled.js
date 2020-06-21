@@ -8,7 +8,7 @@ export const LayoutContainer = styled(Container)`
 
 export const Content = styled(LayoutContainer)`
   display: flex;
-  min-height: 100vh;
+  min-height: calc(100vh - 56px);
   min-width: 100vw;
   align-items: center;
   justify-content: center;

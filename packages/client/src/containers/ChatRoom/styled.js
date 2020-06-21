@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import Container from 'react-bootstrap/Container'
 
 export const ChatRoomContainer = styled(Container)`
-  min-height: 88vh;
+  height: calc(100vh - 56px);
   display: flex;
   flex-flow: column;
   flex-basis: auto;

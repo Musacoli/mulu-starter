@@ -10,8 +10,8 @@ import {
 const router = Router()
 
 router.post('/', createMessage)
+router.get('/', getChatRoomMessages)
 router.get('/all', getMessages)
 router.get('/:id', getMessage)
-router.get('/', getChatRoomMessages)
 
 export default router
