@@ -1,1 +1,1 @@
-web: node babel-node --  packages/server/bin/www
+web: packages/server/bin/www yarn start:server
