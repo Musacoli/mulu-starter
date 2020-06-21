@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon --exec npm run babel-node --  bin/www",
-    "build": "node --exec npm run babel-node --  bin/www",
+    "build": "npm run babel-node --  bin/www",
+    "build:server": "babel ./ -d ./dist --copy-files",
     "babel-node": "babel-node"
   },
   "dependencies": {
