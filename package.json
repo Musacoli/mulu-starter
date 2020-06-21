@@ -8,7 +8,10 @@
   "scripts": {
     "start:client": "yarn workspace client start",
     "start:server": "yarn workspace server start",
-    "start:all": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\"",
+    "build:client": "yarn workspace client build",
+    "build:server": "yarn workspace server build",
+    "start:all": "concurrently --kill-others-on-fail \"yarn start:server\"  \"yarn start:client\"",
+    "build:all": "concurrently --kill-others-on-fail \"yarn build:server\"  \"yarn build:client\"",
     "lint": "eslint ./ --ignore-path .gitignore",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
