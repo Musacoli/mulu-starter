@@ -26,6 +26,14 @@ io.on("connection", socket => {
     console.log('user disconnected');
   });
 
+  socket.on("play", () => {
+    io.emit("playVideo")
+  })
+
+  socket.on("pause", () => {
+    io.emit("pauseVideo")
+  })
+
   socket.on("join", async data => {
     const { chatRoomId, userId } = data
 
