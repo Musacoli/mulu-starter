@@ -1,2 +1,1 @@
-api: yarn build:server
-web: yarn build:client
+web: yarn build:server
