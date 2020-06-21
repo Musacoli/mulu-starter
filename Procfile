@@ -1,1 +1,1 @@
-web: packages/server/bin/www yarn start:server
+web: yarn start:server
